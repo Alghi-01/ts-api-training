@@ -14,3 +14,15 @@ export type UserIdentifier = { id: string } | { email: string };
 export type UserWithToken = User & {
   token: string;
 };
+
+// Untuk implementasi login dengan email dan password
+// atau username dan password
+export interface EmailPassword {
+  email: string;
+  password: string;
+}
+
+export interface UsernamePassword {
+  username: string;
+  password: string;
+}

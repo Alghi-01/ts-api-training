@@ -7,11 +7,17 @@ export const validateLoginInput = (
   next: NextFunction
 ) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
 
-    if (typeof email !== "string" || typeof password !== "string") {
+    if (
+      typeof password !== "string" ||
+      (!email && !username) ||
+      (email && typeof email !== "string") ||
+      (username && typeof username !== "string")
+    ) {
       throw new Error("Invalid input types");
     }
+
     next();
   } catch (error) {
     next(error);

@@ -1,19 +1,32 @@
 import prisma from "../prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { UserWithToken } from "../types/user.type";
+import {
+  EmailPassword,
+  UsernamePassword,
+  UserWithToken,
+} from "../types/user.type";
 
-export const loginUser = async (
-  email: string,
-  password: string
+// Function Overload Signatures
+export const loginUser: {
+  (payload: EmailPassword): Promise<UserWithToken>;
+  (payload: UsernamePassword): Promise<UserWithToken>;
+} = async (
+  payload: EmailPassword | UsernamePassword
 ): Promise<UserWithToken> => {
-  const user = await prisma.user.findUnique({ where: { email } });
+  let user;
+
+  if ("email" in payload) {
+    user = await prisma.user.findUnique({ where: { email: payload.email } });
+  } else if ("username" in payload) {
+    user = await prisma.user.findFirst({ where: { name: payload.username } });
+  }
 
   if (!user) {
     throw new Error("Invalid credentials");
   }
 
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(payload.password, user.password);
   if (!isMatch) {
     throw new Error("Invalid credentials");
   }

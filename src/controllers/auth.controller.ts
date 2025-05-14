@@ -7,7 +7,7 @@ export const loginController = async (
   next: NextFunction
 ) => {
   try {
-    const userWithToken = await loginUser(req.body.email, req.body.password);
+    const userWithToken = await loginUser(req.body);
 
     const { password, ...safeUser } = userWithToken; // exclude password
     res.status(200).json(safeUser);
