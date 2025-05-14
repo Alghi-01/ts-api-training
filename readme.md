@@ -122,22 +122,6 @@ npm install -D typescript ts-node-dev @types/express @types/node @types/cors @ty
 
 ---
 
-## 🔨 Perubahan Kode Tambahan
-
-### ✅ `services/user.service.ts`
-
-Berisi logic pengolahan data dari Prisma dan pemanggilan utility hash password.
-
-### ✅ `utils/hash.util.ts`
-
-Berisi helper function untuk hash dan compare password dengan bcrypt.
-
-### ✅ `types/user.type.ts`
-
-Berisi tipe input dari user untuk keperluan validasi atau dokumentasi kode.
-
----
-
 ## 🚀 Menjalankan Project
 
 ```bash
