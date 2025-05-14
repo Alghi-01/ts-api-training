@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as userService from "../services/user.service";
+import { createResponse } from "../utils/response.util";
 
 export const getUsers = async (
   req: Request,
@@ -8,7 +9,9 @@ export const getUsers = async (
 ) => {
   try {
     const users = await userService.getAllUsers();
-    res.json(users);
+    res
+      .status(200)
+      .json(createResponse(true, "Users retrieved successfully", users));
   } catch (error) {
     next(error);
   }
