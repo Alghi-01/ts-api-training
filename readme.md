@@ -113,11 +113,21 @@ ts-user-api/
 
 ---
 
-## 📦 Dependency Utama (Project Local)
+## 📦 Setup Project Local
 
 ```bash
-npm install express cors dotenv bcrypt
-npm install -D typescript ts-node-dev @types/express @types/node @types/cors @types/bcrypt prisma
+// Inisialisasi Proyek
+npm init -y
+
+// Install Dependencies
+npm install express prisma @prisma/client jsonwebtoken bcrypt dotenv cors
+npm install -D typescript ts-node-dev @types/node @types/express @types/jsonwebtoken @types/bcrypt
+
+// Inisialisasi TypeScript
+npx tsc --init
+
+// Inisialisasi Prisma
+npx prisma init
 ```
 
 ---
