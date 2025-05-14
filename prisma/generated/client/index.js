@@ -145,7 +145,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
@@ -155,17 +155,16 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://postgres.qkxfciauubwsgiunbrep:nGI62oAkysNU0Q8e@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  password  String\n  name      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "20fa9f3f5cf3c1c75221f33d8224755c42ddd83ce2fd4f6b6fd0e0b83da8ee19",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  password  String\n  name      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "c28c36831ed4871c325094543a60c7bf6884d6c0aac81a28a6de8bcba54b0fc2",
   "copyEngine": true
 }
 
