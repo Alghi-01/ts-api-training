@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import e, { NextFunction, Request, Response } from "express";
 import { loginUser } from "../services/auth.service";
 
 export const loginController = async (
@@ -12,6 +12,10 @@ export const loginController = async (
     const { password, ...safeUser } = userWithToken; // exclude password
     res.status(200).json(safeUser);
   } catch (error) {
-    next(error);
+    if (error instanceof Error) {
+      res.status(401).json({ message: error.message });
+    } else {
+      next(error);
+    }
   }
 };
