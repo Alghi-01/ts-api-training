@@ -14,6 +14,19 @@ export const getUsers = async (
   }
 };
 
+export const getUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const users = await userService.findUser({ id: req.params.id });
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const registerUser = async (
   req: Request,
   res: Response,

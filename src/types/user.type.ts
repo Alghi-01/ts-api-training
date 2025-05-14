@@ -4,3 +4,6 @@ export interface CreateUserInput {
   password: string;
   name: string;
 }
+
+// Union Type untuk query user
+export type UserIdentifier = { id: string } | { email: string };
